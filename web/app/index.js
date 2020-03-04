@@ -6,6 +6,10 @@ const log = require('debug')('web:logging');
 const error = require('debug')('web:error');
 // create an express app
 const app = express();
+
+// setup a folder to hold all the static files
+app.use(express.static('public'));
+
 // example middleware that runs once for every request
 
 // route specific middleware

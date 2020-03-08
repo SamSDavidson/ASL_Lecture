@@ -4,14 +4,47 @@ const express = require('express');
 const log = require('debug')('web:logging');
 // add another logger
 const error = require('debug')('web:error');
+//load axios middelware
+const API = require('./utils/API');
+//load routers
+const publicRoutes = require('./routes/public');
+const adminDecisionRoutes = require('./routes/adminDecisions');
+const adminOptionRoutes = require('./routes/adminOptions');
 // create an express app
 const app = express();
 
 // setup a folder to hold all the static files
 app.use(express.static('public'));
 
-// example middleware that runs once for every request
+//check if content-type is url-ecnoded and parses into req.body
+app.use(express.urlencoded({extended: true}));
 
+//axios middleware
+app.use(API);
+
+//set view engine to pug
+app.set('view engine', 'pug');
+
+//set view folder as default place for render
+app.set('views', `${__dirname}/views`);
+
+//set routers
+app.use('/', publicRoutes);
+app.use('/admin/decisions', adminDecisionRoutes);
+app.use('/admin/options', adminOptionRoutes);
+// example middleware that runs once for every request
+app.use(
+  (req, res, next) =>{
+    log('\nRuns Once For Every Request');
+    setTimeout(()=>{
+      next();
+    }, 2000);
+  },
+  (req, res, next) =>{
+    log("Runs With Next");
+    next();
+  },
+);
 // route specific middleware
 app.use('/about', (req, res, next) => {
   log('RUNS ONLY ON the /about page');

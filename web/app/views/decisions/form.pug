@@ -1,0 +1,22 @@
+extends ../_layout
+block content
+  h1.heading New Decision
+  h1.heading= id ? 'Edit Decision' : 'New Decision'
+  form.form(method="POST")
+    label.form_label title
+      input.form_input(type="text", name="title")
+      input.form_input(type="text", name="title", value=title)
+    label.form_label
+      span.form_labelInline Is this decision public?
+      label.form_labelInline
+        input.form_input_radio(type="radio", name="type", value="public")
+        input.form_input_radio(type="radio", name="type", value="public", checked=type === 'public')
+        span yes
+      label.from_labelInline
+        input.form_input_radio(type="radio", name="type", value="private")
+        input.form_input_radio(type="radio", name="type", value="private", checked=type === 'private')
+        span no
+    button.button(type="submit") Save
+    if errors
+      for error in errors
+        small.flash=error.msg

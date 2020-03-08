@@ -1,0 +1,9 @@
+extends _layout
+include _includes/link_mixin
+block content
+  h1.heading Public Decisions
+  ul.list
+    for decision in decisions
+      li.list_item
+        span.list_item_title= decision.title
+        +link('/decisions/'+decision.id, 'View')

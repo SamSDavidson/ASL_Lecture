@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web": "cd web; nodemon server.js"
+    "dev": "concurrently --raw \"npm run api\" \"npm run web\"",
+    "web": "cd web; nodemon server.js",
+    "api": "cd api; nodemon server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
@@ -27,6 +30,7 @@
     "*.js": "eslint --cache --fix"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
   }
 }

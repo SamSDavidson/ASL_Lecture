@@ -1,0 +1,12 @@
+mixin link (url, title, icon = 'fa-eye', className = '')
+  //- create an a tag with the url param set to the href
+  //- and the classname set to the class attribute
+  a.link(href=url, class=className)
+    //- add an i tag with the icon set to class attribute
+    i.fas(class=icon)
+    //-span tag
+    span
+      //-content is non breaking space "nbsp"
+      | &nbsp;
+      //-title param
+      = title

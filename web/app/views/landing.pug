@@ -4,6 +4,6 @@ block content
   h1.heading Public Decisions
   ul.list
     for decision in decisions
-      li.list_item
-        span.list_item_title= decision.title
-        +link('/decisions/'+decision.id, 'View')
+      li.list__item
+        span.list__item__title= decision.title
+         +link('/decisions/'+decision.id, 'View')

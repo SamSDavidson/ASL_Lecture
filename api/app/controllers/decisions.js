@@ -48,7 +48,7 @@ exports.createDecision = (req, res) =>{
     const id = Decisions.create({type, title});
 
     //send new id back to req
-    res.json({id});
+    res.json({id, name, type, userId});
 };
 
 exports.updateDecision = (req, res)=>{
